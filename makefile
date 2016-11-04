@@ -8,13 +8,13 @@ UTINC = -isystem googletest/googlemock/include\
 UTFLAG = -g -pthread -DUNIT_TEST -Wno-write-strings
 
 all:
-	g++ -std=c++14 *.cpp -o Target/QueueFight -g
+	g++ -std=c++14 *.cpp -o QueueFight.exe -g
 
 ut:
-	g++ -std=c++14 ${UTFLAG} ${UTINC} ${UTLIB} Sources/*.cpp TestCases/*.cpp -o Target/ut_QueueFight
+	g++ -std=c++14 ${UTFLAG} ${UTINC} ${UTLIB} Sources/*.cpp TestCases/*.cpp -o ut_QueueFight.exe
 
 clean:
 	rm -rf *.o
 	rm -rf TestCases/*.o
-	rm -rf Target/QueueFight
-	rm -rf Target/ut_QueueFight
+	rm -rf QueueFight.exe
+	rm -rf ut_QueueFight.exe
