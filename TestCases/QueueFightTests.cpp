@@ -25,3 +25,15 @@ TEST(QueueFightTestSuite, BarbarianShouldWinKarate)
     ASSERT_EQ(qf.m_queue[0], p1);
     ASSERT_EQ(qf.m_queue[1], p0);
 }
+
+TEST(QueueFightTestSuite, ScienceGirlShouldWinBlondGirl)
+{
+    QueueFight qf;
+    Person p0(0, PERSON_TYPE::BLONDGIRL), p1(1, PERSON_TYPE::SCIENCEGIRL);
+
+    qf.push(p0);
+    qf.push(p1);
+
+    ASSERT_EQ(qf.m_queue[0], p1);
+    ASSERT_EQ(qf.m_queue[1], p0);
+}

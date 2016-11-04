@@ -9,5 +9,6 @@ bool operator==(const Person& p_lhs, const Person& p_rhs)
 bool operator>(const Person& p_lhs, const Person& p_rhs)
 {
     return (p_lhs.getType() == PERSON_TYPE::KARATE && p_rhs.getType() == PERSON_TYPE::HIPIS)
-           || (p_lhs.getType() == PERSON_TYPE::BARBARIAN && p_rhs.getType() == PERSON_TYPE::KARATE);
+           || (p_lhs.getType() == PERSON_TYPE::BARBARIAN && p_rhs.getType() == PERSON_TYPE::KARATE)
+           || (p_lhs.getType() == PERSON_TYPE::SCIENCEGIRL && p_rhs.getType() == PERSON_TYPE::BLONDGIRL);
 }
