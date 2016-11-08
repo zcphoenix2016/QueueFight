@@ -29,7 +29,6 @@ TEST_F(QueueFightTestSuite, KarateShouldWinHipis)
     qf.push(p1);
     qf.push(p0);
 
-    list.clear();
     list = {p1, p0};
 
     ASSERT_EQ(qf.m_queue, list);
@@ -42,7 +41,6 @@ TEST_F(QueueFightTestSuite, BarbarianShouldWinKarate)
     qf.push(p0);
     qf.push(p1);
 
-    list.clear();
     list = {p0, p1};
 
     ASSERT_EQ(qf.m_queue, list);
@@ -55,7 +53,6 @@ TEST_F(QueueFightTestSuite, ScienceGirlShouldWinBlondGirl)
     qf.push(p0);
     qf.push(p1);
 
-    list.clear();
     list = {p0, p1};
 
     ASSERT_EQ(qf.m_queue, list);
@@ -72,8 +69,19 @@ TEST_F(QueueFightTestSuite,TwoOrMoreBlondGirlsShouldWinKarate)
     qf.push(p1);
     qf.push(p0);
 
-    list.clear();
     list = {p0, p3, p4, p1, p2};
+
+    ASSERT_EQ(qf.m_queue, list);
+}
+
+TEST_F(QueueFightTestSuite, ScienceGirlShouldWinBararian)
+{
+    Person p0(0, PERSON_TYPE::SCIENCEGIRL), p1(1, PERSON_TYPE::BARBARIAN);
+
+    qf.push(p1);
+    qf.push(p0);
+
+    list = {p1, p0};
 
     ASSERT_EQ(qf.m_queue, list);
 }
