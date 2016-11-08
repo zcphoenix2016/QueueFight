@@ -8,7 +8,7 @@ UTINC = -isystem googletest/googlemock/include\
 UTFLAG = -g -pthread -DUNIT_TEST -Wno-write-strings
 
 all:
-	g++ -std=c++14 *.cpp -o QueueFight.exe -g
+	g++ -std=c++14 Sources/*.cpp -o QueueFight.exe -g
 
 ut:
 	g++ -std=c++14 ${UTFLAG} ${UTINC} ${UTLIB} Sources/*.cpp TestCases/*.cpp -o ut_QueueFight.exe

@@ -15,11 +15,16 @@ public:
     Person(unsigned int p_id, PERSON_TYPE p_type) : m_id(p_id), m_type(p_type)
     {
     }
-    unsigned int getId() const
+    Person(const Person& rhs)
+    {
+        m_id = rhs.m_id;
+        m_type = rhs.m_type;
+    }
+    unsigned int id() const
     {
         return m_id;
     }
-    PERSON_TYPE getType() const
+    PERSON_TYPE type() const
     {
         return m_type;
     }

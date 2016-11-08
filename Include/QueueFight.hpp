@@ -1,6 +1,6 @@
 #pragma once
 
-#include <vector>
+#include <list>
 #include "../Include/Person.hpp"
 
 class QueueFight
@@ -8,5 +8,5 @@ class QueueFight
 public:
     QueueFight() = default;
     void push(const Person p_person);
-    std::vector<Person> m_queue;
+    std::list<Person> m_queue = {};
 };

@@ -1,17 +1,21 @@
 #include "../Include/QueueFight.hpp"
 #include <iterator>
+#include <algorithm>
 
 void QueueFight::push(const Person p_person)
 {
-    m_queue.push_back(p_person);
+    m_queue.push_front(p_person);
 
-    std::vector<Person>::reverse_iterator iterNew = m_queue.rbegin();
-    while(iterNew != m_queue.rend() - 1)
+    auto iter = m_queue.begin();
+    auto next = std::next(iter);
+    while(next != m_queue.end())
     {
-        if(*iterNew > *(iterNew + 1))
+        next = std::next(iter);
+        if(*iter > *next)
         {
-            std::swap(*iterNew, *(iterNew + 1));
+            std::swap(*iter, *next);
         }
-        iterNew ++;
+        iter ++;
+        next = std::next(iter);
     }
 }
