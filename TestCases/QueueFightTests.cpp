@@ -42,18 +42,18 @@ TEST(QueueFightTestSuite, ScienceGirlShouldWinBlondGirl)
     ASSERT_EQ(qf.m_queue, list);
 }
 
-/*
 TEST(QueueFightTestSuite,TwoOrMoreBlondGirlsShouldWinKarate)
 {
     QueueFight qf;
-    Person p0(0, PERSON_TYPE::BLONDGIRL), p1(1, PERSON_TYPE::BLONDGIRL), p2(2, PERSON_TYPE::KARATE);
+    Person p0(0, PERSON_TYPE::BLONDGIRL), p1(1, PERSON_TYPE::BLONDGIRL), p2(2, PERSON_TYPE::BLONDGIRL), 
+           p3(3, PERSON_TYPE::KARATE), p4(4, PERSON_TYPE::KARATE);
 
+    qf.push(p4);
+    qf.push(p3);
     qf.push(p2);
-    qf.push(p0);
     qf.push(p1);
+    qf.push(p0);
 
-    ASSERT_EQ(qf.m_queue[0], p0);
-    ASSERT_EQ(qf.m_queue[1], p1);
-    ASSERT_EQ(qf.m_queue[2], p2);
+    std::list<Person> list{p0, p3, p4, p1, p2};
+    ASSERT_EQ(qf.m_queue, list);
 }
-*/

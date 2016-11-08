@@ -9,4 +9,7 @@ public:
     QueueFight() = default;
     void push(const Person p_person);
     std::list<Person> m_queue = {};
+
+private:
+    void moveTwoOrMoreBlondGirlsAheadKarate();
 };
