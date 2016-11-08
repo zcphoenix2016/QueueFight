@@ -3,48 +3,66 @@
 #include "../Include/Person.hpp"
 #include <list>
 
-TEST(QueueFightTestSuite, KarateShouldWinHipis)
+class QueueFightTestSuite : public ::testing::Test
 {
+public:
+    QueueFightTestSuite()
+    {
+    }
+
+    void SetUp() override
+    {
+    }
+
+    void TearDown() override
+    {
+    }
+
     QueueFight qf;
+    std::list<Person> list = {};
+};
+
+TEST_F(QueueFightTestSuite, KarateShouldWinHipis)
+{
     Person p0(0, PERSON_TYPE::KARATE), p1(1, PERSON_TYPE::HIPIS);
 
     qf.push(p1);
     qf.push(p0);
 
-    std::list<Person> list{p1, p0};
+    list.clear();
+    list = {p1, p0};
 
     ASSERT_EQ(qf.m_queue, list);
 }
 
-TEST(QueueFightTestSuite, BarbarianShouldWinKarate)
+TEST_F(QueueFightTestSuite, BarbarianShouldWinKarate)
 {
-    QueueFight qf;
     Person p0(0, PERSON_TYPE::KARATE), p1(1, PERSON_TYPE::BARBARIAN);
 
     qf.push(p0);
     qf.push(p1);
 
-    std::list<Person> list{p0, p1};
+    list.clear();
+    list = {p0, p1};
 
     ASSERT_EQ(qf.m_queue, list);
 }
 
-TEST(QueueFightTestSuite, ScienceGirlShouldWinBlondGirl)
+TEST_F(QueueFightTestSuite, ScienceGirlShouldWinBlondGirl)
 {
-    QueueFight qf;
     Person p0(0, PERSON_TYPE::BLONDGIRL), p1(1, PERSON_TYPE::SCIENCEGIRL);
 
     qf.push(p0);
     qf.push(p1);
 
-    std::list<Person> list{p0, p1};
+    list.clear();
+    list = {p0, p1};
 
     ASSERT_EQ(qf.m_queue, list);
 }
 
-TEST(QueueFightTestSuite,TwoOrMoreBlondGirlsShouldWinKarate)
+TEST_F(QueueFightTestSuite,TwoOrMoreBlondGirlsShouldWinKarate)
 {
-    QueueFight qf;
     Person p0(0, PERSON_TYPE::BLONDGIRL), p1(1, PERSON_TYPE::BLONDGIRL), p2(2, PERSON_TYPE::BLONDGIRL), 
            p3(3, PERSON_TYPE::KARATE), p4(4, PERSON_TYPE::KARATE);
 
@@ -54,6 +72,8 @@ TEST(QueueFightTestSuite,TwoOrMoreBlondGirlsShouldWinKarate)
     qf.push(p1);
     qf.push(p0);
 
-    std::list<Person> list{p0, p3, p4, p1, p2};
+    list.clear();
+    list = {p0, p3, p4, p1, p2};
+
     ASSERT_EQ(qf.m_queue, list);
 }
