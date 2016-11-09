@@ -11,6 +11,12 @@ void QueueFight::push(const Person p_person)
     while(next != m_queue.end())
     {
         next = std::next(iter);
+        if(PERSON_TYPE::BARBARIAN == iter->type()
+            && PERSON_TYPE::BARBARIAN == next->type())
+        {
+            m_queue.erase(iter);
+            break;
+        }
         if(*iter > *next)
         {
             std::swap(*iter, *next);

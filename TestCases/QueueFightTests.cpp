@@ -98,3 +98,16 @@ TEST_F(QueueFightTestSuite, NewHipisShouldWinExistingHipis)
 
     ASSERT_EQ(qf.m_queue, list);
 }
+
+TEST_F(QueueFightTestSuite, NewBararianBehindExistingBararianShouldBeDiscarded)
+{
+    Person p0(0, PERSON_TYPE::BARBARIAN), p1(1, PERSON_TYPE::BARBARIAN), p2(2, PERSON_TYPE::KARATE);
+
+    qf.push(p2);
+    qf.push(p1);
+    qf.push(p0);
+
+    list = {p2, p1};
+
+    ASSERT_EQ(qf.m_queue, list);
+}
