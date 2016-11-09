@@ -11,6 +11,7 @@ public:
     std::list<Person> m_queue = {};
 
 private:
+    void sort();
     void moveTwoOrMoreBlondGirlsAheadKarate();
     void moveTenHipisesToFront();
 };

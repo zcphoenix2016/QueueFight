@@ -6,6 +6,15 @@ void QueueFight::push(const Person p_person)
 {
     m_queue.push_front(p_person);
 
+    sort();
+
+    moveTwoOrMoreBlondGirlsAheadKarate();
+
+    moveTenHipisesToFront();
+}
+
+void QueueFight::sort()
+{
     auto iter = m_queue.begin();
     auto next = std::next(iter);
     while(next != m_queue.end())
@@ -27,10 +36,6 @@ void QueueFight::push(const Person p_person)
             next = std::next(iter);
         }
     }
-
-    moveTwoOrMoreBlondGirlsAheadKarate();
-
-    moveTenHipisesToFront();
 }
 
 void QueueFight::moveTwoOrMoreBlondGirlsAheadKarate()
