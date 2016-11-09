@@ -64,12 +64,12 @@ TEST_F(QueueFightTestSuite,TwoOrMoreBlondGirlsShouldWinKarate)
            p3(3, PERSON_TYPE::KARATE), p4(4, PERSON_TYPE::KARATE);
 
     qf.push(p4);
-    qf.push(p3);
     qf.push(p2);
+    qf.push(p3);
     qf.push(p1);
     qf.push(p0);
 
-    list = {p0, p3, p4, p1, p2};
+    list = {p3, p4, p0, p1, p2};
 
     ASSERT_EQ(qf.m_queue, list);
 }

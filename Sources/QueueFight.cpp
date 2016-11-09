@@ -26,13 +26,16 @@ void QueueFight::moveTwoOrMoreBlondGirlsAheadKarate()
 {
     auto isBlondGirl = [](const Person& p){return PERSON_TYPE::BLONDGIRL == p.type();};
     auto iterFirstBlondGirl = std::find_if(m_queue.begin(), m_queue.end(), isBlondGirl);
-    auto iterFirstNonBlondGirl = std::find_if_not(m_queue.begin(), m_queue.end(), isBlondGirl);
-    if(2 <= std::distance(iterFirstBlondGirl, iterFirstNonBlondGirl)
-        && PERSON_TYPE::KARATE == iterFirstNonBlondGirl->type())
+    auto iterFirstNonBlondGirl = std::find_if_not(iterFirstBlondGirl, m_queue.end(), isBlondGirl);
+    while(iterFirstNonBlondGirl != m_queue.end()
+            && PERSON_TYPE::KARATE == iterFirstNonBlondGirl->type()
+            && 2 <= std::distance(iterFirstBlondGirl, iterFirstNonBlondGirl))
     {
         auto isKarateMan = [](const Person& p){return PERSON_TYPE::KARATE == p.type();};
         auto iterFirstNonKarate = std::find_if_not(iterFirstNonBlondGirl, m_queue.end(), isKarateMan);
         m_queue.insert(iterFirstBlondGirl, iterFirstNonBlondGirl, iterFirstNonKarate);
         m_queue.erase(iterFirstNonBlondGirl, iterFirstNonKarate);
+
+        iterFirstNonBlondGirl = std::find_if_not(iterFirstBlondGirl, m_queue.end(), isBlondGirl);
     }
 }
