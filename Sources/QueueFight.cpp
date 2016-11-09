@@ -4,6 +4,11 @@
 
 void QueueFight::push(const Person p_person)
 {
+    if(MAX_SIZE <= m_queue.size())
+    {
+        return;
+    }
+    
     m_queue.push_front(p_person);
 
     sort();

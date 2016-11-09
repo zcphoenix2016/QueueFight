@@ -3,10 +3,11 @@
 #include <list>
 #include "../Include/Person.hpp"
 
+const unsigned int MAX_SIZE = 20;
+
 class QueueFight
 {
 public:
-    QueueFight() = default;
     void push(const Person p_person);
     std::list<Person> m_queue = {};
 

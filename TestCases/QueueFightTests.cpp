@@ -2,6 +2,7 @@
 #include "../Include/QueueFight.hpp"
 #include "../Include/Person.hpp"
 #include <list>
+#include <vector>
 
 class QueueFightTestSuite : public ::testing::Test
 {
@@ -170,5 +171,18 @@ TEST_F(QueueFightTestSuite, TenHipisShouldBeMovedToTheFront)
     }
     list.push_front(vec[vec.size() - 1]);
 
+    ASSERT_EQ(qf.m_queue, list);
+}
+
+TEST_F(QueueFightTestSuite, TheQueueShouldNotContainMoreThanTwentyPersons)
+{
+    for(unsigned int index = 0; index < 20; ++ index)
+    {
+        list.push_front({index, PERSON_TYPE::KARATE});
+        qf.push({index, PERSON_TYPE::KARATE});
+    }
+    
+    qf.push({20, PERSON_TYPE::BARBARIAN});
+    
     ASSERT_EQ(qf.m_queue, list);
 }
