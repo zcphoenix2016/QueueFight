@@ -85,3 +85,16 @@ TEST_F(QueueFightTestSuite, ScienceGirlShouldWinBararian)
 
     ASSERT_EQ(qf.m_queue, list);
 }
+
+TEST_F(QueueFightTestSuite, NewHipisShouldWinExistingHipis)
+{
+    Person p0(0, PERSON_TYPE::HIPIS), p1(1, PERSON_TYPE::HIPIS), p2(2, PERSON_TYPE::HIPIS);
+
+    qf.push(p2);
+    qf.push(p1);
+    qf.push(p0);
+
+    list = {p2, p1, p0};
+
+    ASSERT_EQ(qf.m_queue, list);
+}
