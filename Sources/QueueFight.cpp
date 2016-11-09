@@ -12,9 +12,7 @@ void QueueFight::push(const Person p_person)
     m_queue.push_front(p_person);
 
     sort();
-
     moveTwoOrMoreBlondGirlsAheadKarate();
-
     moveTenHipisesToFront();
 }
 
@@ -24,7 +22,6 @@ void QueueFight::sort()
     auto next = std::next(iter);
     while(next != m_queue.end())
     {
-        next = std::next(iter);
         if(not (*iter > *next))
         {
             if(PERSON_TYPE::BARBARIAN == iter->type()
