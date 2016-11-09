@@ -34,6 +34,42 @@ TEST_F(QueueFightTestSuite, KarateShouldWinHipis)
     ASSERT_EQ(qf.m_queue, list);
 }
 
+TEST_F(QueueFightTestSuite, BlondGirlShouldWinHipis)
+{
+    Person p0(0, PERSON_TYPE::BLONDGIRL), p1(1, PERSON_TYPE::HIPIS);
+
+    qf.push(p1);
+    qf.push(p0);
+
+    list = {p1, p0};
+
+    ASSERT_EQ(qf.m_queue, list);
+}
+
+TEST_F(QueueFightTestSuite, ScienceGirlShouldWinHipis)
+{
+    Person p0(0, PERSON_TYPE::SCIENCEGIRL), p1(1, PERSON_TYPE::HIPIS);
+
+    qf.push(p1);
+    qf.push(p0);
+
+    list = {p1, p0};
+
+    ASSERT_EQ(qf.m_queue, list);
+}
+
+TEST_F(QueueFightTestSuite, BararianShouldWinHipis)
+{
+    Person p0(0, PERSON_TYPE::BARBARIAN), p1(1, PERSON_TYPE::HIPIS);
+
+    qf.push(p1);
+    qf.push(p0);
+
+    list = {p1, p0};
+
+    ASSERT_EQ(qf.m_queue, list);
+}
+
 TEST_F(QueueFightTestSuite, BarbarianShouldWinKarate)
 {
     Person p0(0, PERSON_TYPE::KARATE), p1(1, PERSON_TYPE::BARBARIAN);
