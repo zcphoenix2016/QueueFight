@@ -11,21 +11,26 @@ void QueueFight::push(const Person p_person)
     while(next != m_queue.end())
     {
         next = std::next(iter);
-        if(PERSON_TYPE::BARBARIAN == iter->type()
-            && PERSON_TYPE::BARBARIAN == next->type())
+        if(not (*iter > *next))
         {
-            m_queue.erase(iter);
+            if(PERSON_TYPE::BARBARIAN == iter->type()
+                && PERSON_TYPE::BARBARIAN == next->type())
+            {
+                m_queue.erase(iter);
+            }
             break;
         }
-        if(*iter > *next)
+        else
         {
             std::swap(*iter, *next);
+            iter ++;
+            next = std::next(iter);
         }
-        iter ++;
-        next = std::next(iter);
     }
 
     moveTwoOrMoreBlondGirlsAheadKarate();
+
+    moveTenHipisesToFront();
 }
 
 void QueueFight::moveTwoOrMoreBlondGirlsAheadKarate()
@@ -43,5 +48,18 @@ void QueueFight::moveTwoOrMoreBlondGirlsAheadKarate()
         m_queue.erase(iterFirstNonBlondGirl, iterFirstNonKarate);
 
         iterFirstNonBlondGirl = std::find_if_not(iterFirstBlondGirl, m_queue.end(), isBlondGirl);
+    }
+}
+
+void QueueFight::moveTenHipisesToFront()
+{
+    auto isHipis = [](const Person& p){return PERSON_TYPE::HIPIS == p.type();};
+    auto iterFirstHipis = std::find_if(m_queue.begin(), m_queue.end(), isHipis);
+    auto iterFirstNonHipis = std::find_if_not(m_queue.begin(), m_queue.end(), isHipis);
+    if(iterFirstNonHipis != m_queue.end()
+        && 10 <= std::distance(iterFirstHipis, iterFirstNonHipis))
+    {
+        m_queue.insert(m_queue.end(), iterFirstHipis, iterFirstNonHipis);
+        m_queue.erase(iterFirstHipis, iterFirstNonHipis);
     }
 }

@@ -11,9 +11,6 @@ int main(int argc, char** argv)
 int ut_main(int argc, char** argv)
 #endif
 {
-    int x = 10, y = 10;
-    int z = y + (x --);
-    std::cout << "z = " << z << ", x = " << x << std::endl;
     Person p0(0, PERSON_TYPE::KARATE), p1(1, PERSON_TYPE::BARBARIAN);
     std::list<Person> list;
     list.push_front(p0);

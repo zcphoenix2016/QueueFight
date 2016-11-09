@@ -147,3 +147,28 @@ TEST_F(QueueFightTestSuite, NewBararianBehindExistingBararianShouldBeDiscarded)
 
     ASSERT_EQ(qf.m_queue, list);
 }
+
+TEST_F(QueueFightTestSuite, TenHipisShouldBeMovedToTheFront)
+{
+    std::vector<Person> vec = {};
+    vec.push_back({0, PERSON_TYPE::KARATE});
+    vec.push_back({1, PERSON_TYPE::BARBARIAN});
+    unsigned int index = 0;
+    for(index = 2; index <= 12; ++ index)
+    {
+        vec.push_back({index, PERSON_TYPE::HIPIS});
+    }
+
+    for(index = 0; index < vec.size(); ++ index)
+    {
+        qf.push(vec[index]);
+    }
+
+    for(index = 0; index < vec.size() - 1; ++ index)
+    {
+        list.push_back(vec[index]);
+    }
+    list.push_front(vec[vec.size() - 1]);
+
+    ASSERT_EQ(qf.m_queue, list);
+}
