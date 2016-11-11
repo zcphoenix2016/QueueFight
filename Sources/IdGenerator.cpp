@@ -28,3 +28,8 @@ unsigned int IdGenerator::allocate()
 
     return l_id;
 }
+
+void IdGenerator::release(unsigned int p_id)
+{
+    m_ids[p_id] = false;
+}
