@@ -1,14 +1,14 @@
 #include "../Include/Person.hpp"
 
-bool operator==(const Person& p_lhs, const Person& p_rhs)
+bool Person::operator==(const Person& p_rhs) const
 {
-    return (p_lhs.id() == p_rhs.id()) and (p_lhs.type() == p_rhs.type());
+    return (m_id == p_rhs.id()) and (m_type == p_rhs.type());
 }
 
-bool operator>(const Person& p_lhs, const Person& p_rhs)
+bool Person::operator>(const Person& p_rhs) const
 {
     return (p_rhs.type() == PERSON_TYPE::HIPIS)
-            || (p_lhs.type() == PERSON_TYPE::BARBARIAN && p_rhs.type() == PERSON_TYPE::KARATE)
-            || (p_lhs.type() == PERSON_TYPE::SCIENCEGIRL && p_rhs.type() == PERSON_TYPE::BLONDGIRL)
-            || (p_lhs.type() == PERSON_TYPE::SCIENCEGIRL && p_rhs.type() == PERSON_TYPE::BARBARIAN);
+            || (m_type == PERSON_TYPE::BARBARIAN && p_rhs.type() == PERSON_TYPE::KARATE)
+            || (m_type == PERSON_TYPE::SCIENCEGIRL && p_rhs.type() == PERSON_TYPE::BLONDGIRL)
+            || (m_type == PERSON_TYPE::SCIENCEGIRL && p_rhs.type() == PERSON_TYPE::BARBARIAN);
 }

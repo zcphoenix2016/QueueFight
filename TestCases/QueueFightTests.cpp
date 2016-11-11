@@ -32,8 +32,8 @@ class QueueFightTwoPersonsComparisonTestSuite : public QueueFightTestSuite,
 
 TEST_P(QueueFightTwoPersonsComparisonTestSuite, checkTwoPersonsComparisonResult)
 {
-    const Person l_first = GetParam().first;
-    const Person l_second = GetParam().second;
+    Person l_first = GetParam().first;
+    Person l_second = GetParam().second;
     
     m_qf.push(l_second);
     m_qf.push(l_first);

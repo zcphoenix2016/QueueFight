@@ -28,11 +28,11 @@ public:
     {
         return m_type;
     }
+    
+    bool operator==(const Person& p_rhs) const;
+    bool operator>(const Person& p_rhs) const;
 
 private:
     unsigned int m_id = 0;
     PERSON_TYPE m_type = PERSON_TYPE::HIPIS;
 };
-
-bool operator==(const Person& p_lhs, const Person& p_rhs);
-bool operator>(const Person& p_lhs, const Person& p_rhs);
