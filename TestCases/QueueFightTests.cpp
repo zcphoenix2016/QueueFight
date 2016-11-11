@@ -29,7 +29,6 @@ class QueueFightTwoPersonsComparisonTestSuite : public QueueFightTestSuite,
 {
 };
 
-
 TEST_P(QueueFightTwoPersonsComparisonTestSuite, checkTwoPersonsComparisonResult)
 {
     Person l_first = GetParam().first;
