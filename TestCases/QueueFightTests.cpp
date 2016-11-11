@@ -20,8 +20,8 @@ public:
     {
     }
 
-    QueueFight qf;
-    std::list<Person> list = {};
+    QueueFight m_qf;
+    std::list<Person> m_result = {};
 };
 
 class QueueFightTwoPersonsComparisonTestSuite : public QueueFightTestSuite,
@@ -35,12 +35,12 @@ TEST_P(QueueFightTwoPersonsComparisonTestSuite, checkTwoPersonsComparisonResult)
     const Person l_first = GetParam().first;
     const Person l_second = GetParam().second;
     
-    qf.push(l_second);
-    qf.push(l_first);
+    m_qf.push(l_second);
+    m_qf.push(l_first);
     
-    list = {l_second, l_first};
+    m_result = {l_second, l_first};
     
-    ASSERT_EQ(qf.m_queue, list);
+    ASSERT_EQ(m_qf.m_queue, m_result);
 }
 
 INSTANTIATE_TEST_CASE_P(QueueFightTwoPersonsComparisonTests,
@@ -54,69 +54,70 @@ INSTANTIATE_TEST_CASE_P(QueueFightTwoPersonsComparisonTests,
                                           std::make_pair<Person, Person>({0, PERSON_TYPE::SCIENCEGIRL}, {1, PERSON_TYPE::BLONDGIRL}),
                                           std::make_pair<Person, Person>({0, PERSON_TYPE::SCIENCEGIRL}, {1, PERSON_TYPE::BARBARIAN})));
 
-TEST_F(QueueFightTestSuite,TwoOrMoreBlondGirlsShouldWinKarate)
+TEST_F(QueueFightTestSuite, TwoOrMoreBlondGirlsShouldWinKarate)
 {
     Person p0(0, PERSON_TYPE::BLONDGIRL), p1(1, PERSON_TYPE::BLONDGIRL), p2(2, PERSON_TYPE::BLONDGIRL), 
            p3(3, PERSON_TYPE::KARATE), p4(4, PERSON_TYPE::KARATE);
 
-    qf.push(p4);
-    qf.push(p2);
-    qf.push(p3);
-    qf.push(p1);
-    qf.push(p0);
+    m_qf.push(p4);
+    m_qf.push(p2);
+    m_qf.push(p3);
+    m_qf.push(p1);
+    m_qf.push(p0);
 
-    list = {p3, p4, p0, p1, p2};
+    m_result = {p3, p4, p0, p1, p2};
 
-    ASSERT_EQ(qf.m_queue, list);
+    ASSERT_EQ(m_qf.m_queue, m_result);
 }
 
-TEST_F(QueueFightTestSuite, NewBararianBehindExistingBararianShouldBeDiscarded)
+TEST_F(QueueFightTestSuite, NewBararianBehl_indexistingBararianShouldBeDiscarded)
 {
     Person p0(0, PERSON_TYPE::BARBARIAN), p1(1, PERSON_TYPE::BARBARIAN), p2(2, PERSON_TYPE::KARATE);
 
-    qf.push(p2);
-    qf.push(p1);
-    qf.push(p0);
+    m_qf.push(p2);
+    m_qf.push(p1);
+    m_qf.push(p0);
 
-    list = {p2, p1};
+    m_result = {p2, p1};
 
-    ASSERT_EQ(qf.m_queue, list);
+    ASSERT_EQ(m_qf.m_queue, m_result);
 }
 
 TEST_F(QueueFightTestSuite, TenHipisShouldBeMovedToTheFront)
 {
-    std::vector<Person> vec = {};
-    vec.push_back({0, PERSON_TYPE::KARATE});
-    vec.push_back({1, PERSON_TYPE::BARBARIAN});
-    unsigned int index = 0;
-    for(index = 2; index <= 12; ++ index)
+    std::vector<Person> l_vec = {};
+    l_vec.push_back({0, PERSON_TYPE::KARATE});
+    l_vec.push_back({1, PERSON_TYPE::BARBARIAN});
+    
+    unsigned int l_index = 0;
+    for(l_index = 2; l_index <= 12; ++ l_index)
     {
-        vec.push_back({index, PERSON_TYPE::HIPIS});
+        l_vec.push_back({l_index, PERSON_TYPE::HIPIS});
     }
 
-    for(index = 0; index < vec.size(); ++ index)
+    for(l_index = 0; l_index < l_vec.size(); ++ l_index)
     {
-        qf.push(vec[index]);
+        m_qf.push(l_vec[l_index]);
     }
 
-    for(index = 0; index < vec.size() - 1; ++ index)
+    for(l_index = 0; l_index < l_vec.size() - 1; ++ l_index)
     {
-        list.push_back(vec[index]);
+        m_result.push_back(l_vec[l_index]);
     }
-    list.push_front(vec[vec.size() - 1]);
+    m_result.push_front(l_vec[l_vec.size() - 1]);
 
-    ASSERT_EQ(qf.m_queue, list);
+    ASSERT_EQ(m_qf.m_queue, m_result);
 }
 
 TEST_F(QueueFightTestSuite, TheQueueShouldNotContainMoreThanTwentyPersons)
 {
-    for(unsigned int index = 0; index < 20; ++ index)
+    for(unsigned int l_index = 0; l_index < 20; ++ l_index)
     {
-        list.push_front({index, PERSON_TYPE::KARATE});
-        qf.push({index, PERSON_TYPE::KARATE});
+        m_result.push_front({l_index, PERSON_TYPE::KARATE});
+        m_qf.push({l_index, PERSON_TYPE::KARATE});
     }
     
-    qf.push({20, PERSON_TYPE::BARBARIAN});
+    m_qf.push({20, PERSON_TYPE::BARBARIAN});
     
-    ASSERT_EQ(qf.m_queue, list);
+    ASSERT_EQ(m_qf.m_queue, m_result);
 }
