@@ -13,6 +13,9 @@ all:
 ut:
 	g++ -std=c++14 ${UTFLAG} ${UTINC} ${UTLIB} Sources/*.cpp TestCases/*.cpp -o ut_QueueFight.exe
 
+ut_id:
+	g++ -std=c++14 ${UTFLAG} ${UTINC} ${UTLIB} Sources/IdGenerator.cpp TestCases/IdGeneratorTests.cpp -o ut_id.exe
+
 clean:
 	rm -rf *.o
 	rm -rf TestCases/*.o
